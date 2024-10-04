@@ -1,7 +1,6 @@
 import requests
 
-API_KEY = 'QCXWtDYvryl2ytjklcOs0A==BKYy3Y6UCyXIpnVc'
-API_URL = 'https://api.api-ninjas.com/v1/animals?name='
+API_KEY = "QCXWtDYvryl2ytjklcOs0A==BKYy3Y6UCyXIpnVc"
 
 def fetch_data(animal_name):
     """
@@ -20,11 +19,13 @@ def fetch_data(animal_name):
         }
     },
     """
-    response = requests.get(f"{API_URL}{animal_name}", headers={'X-Api-Key': API_KEY})
+    url = f"https://api.api-ninjas.com/v1/animals?name={animal_name}"
+    headers = {
+        "X-Api-Key": API_KEY
+    }
+    response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
         return response.json()
     else:
-        print(f"Error fetching data: {response.status_code}")
         return []
-
